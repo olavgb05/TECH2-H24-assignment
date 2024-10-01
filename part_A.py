@@ -19,29 +19,25 @@ def std_loops(x):
     sd : float
         Standard deviation of the list of numbers.
     """
-    # Calculate the length of the list using loops
+    
     N = 0
-    for _ in x:
-        N = N + 1
-    
-    # Calculate the mean of x using loops
-    total = 0
-    for i in x:
-        total = total + i
-    mean_x = total / N
-
-    # Calculate the sum of squares using loops
+    total_x = 0
     sum_squares = 0
+
     for i in x:
-        sum_squares = sum_squares + i**2
+        N = N + 1                           # Calculating the number of elements
+        total_x = total_x + i               # Calculating the total x or the sum of x
+        sum_squares = sum_squares + i**2    # Calculating the sum of x squared
+        
     
-    # Calculate standard deviation
-    mean_squares = sum_squares / N
-    variance = mean_squares - mean_x**2
-    std_dev = sqrt(variance)
+    mean_x = total_x / N                    # Calculating the mean of x
+   
+    mean_squares = sum_squares / N          # Calculating the mean of x squared
+    variance = mean_squares - mean_x**2     # Calculating the variance
+    sd = sqrt(variance)                     # Calculating the standard deviation
 
 
-    return std_dev
+    return sd
 
 def std_builtin(x):
     """
@@ -57,22 +53,26 @@ def std_builtin(x):
     sd : float
         Standard deviation of the list of numbers.
     """
-    # Calculate using the built-in functions len() and sum()
-    N = len(x)
-    mean_x = sum(x) / N
-    mean_squares = sum(i**2 for i in x) / N
-    variance = mean_squares - mean_x**2
-    std_dev = sqrt(variance)
+    
+    N = len(x)                                  # Calculating the number of elements
+    mean_x = sum(x) / N                         # Calculating the mean of x
+    mean_squares = sum(i**2 for i in x) / N     # Calculating the mean of x squared
+    variance = mean_squares - mean_x**2         # Calculating the variance
+    sd = sqrt(variance)                         # Calculating the standard deviation
     
 
-    return std_dev
+    return sd
 
-num_lst = [1, 2, 3, 4, 5]
+def main():
+    num_lst = [1, 2, 3, 4, 5]
 
-std_loops_result = std_loops(num_lst)
-std_builtin_result = std_builtin(num_lst)
-std_numpy_result = np.std(num_lst)
+    std_loops_result = std_loops(num_lst)
+    std_builtin_result = std_builtin(num_lst)
+    std_numpy_result = np.std(num_lst)
 
-print(f"Computing standard deviation of x using loops gives : {std_loops_result}")
-print(f"Computing standard deviation of x using built-in functions sum() and len() gives : {std_builtin_result}")
-print(f"Computing standard deviation of x using std() from NumPy gives {std_numpy_result}")
+    print(f"Computing standard deviation of x using loops gives : {std_loops_result}")
+    print(f"Computing standard deviation of x using built-in functions sum() and len() gives : {std_builtin_result}")
+    print(f"Computing standard deviation of x using std() from NumPy gives {std_numpy_result}")
+
+if __name__ == "__main__":
+    main()
